@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { Children, useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
@@ -14,6 +14,8 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContex";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -33,6 +35,11 @@ const Header = ({ type }) => {
     room: 1,
   });
 
+  const navigate = useNavigate();
+
+  const { user } = useContext(AuthContext);
+
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -42,11 +49,12 @@ const Header = ({ type }) => {
     });
   };
 
- 
-  const navigate = useNavigate();
-   
+  const { dispatch } = useContext(SearchContext)
+
+
   const handleSearch = () => {
-    navigate("/hotels", {state:{destination,date,options}})
+    dispatch({ type: "NEW_SEARCH", payload: { destination, date, options } })
+    navigate("/hotels", { state: { destination, date, options } })
   }
 
   return (
@@ -78,12 +86,10 @@ const Header = ({ type }) => {
           <>
             <h1 className="headerTitle">A lifetime of discount? It's Genius</h1>
             <p className="headerDesc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem necessitatibus sequi commodi quam accusantium
-              veniam. Enim laborum, qui exercitationem, aperiam quos repudiandae
-              officiis odit, voluptates facilis velit quae quia asperiores.
+              Plan your next trip with ease — fast, simple, and secure reservations at your fingertips.
             </p>
-            <button className="headerBtn">Sign in / Register</button>
+
+            {!user && <button className="headerBtn">Sign in / Register</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
@@ -191,7 +197,7 @@ const Header = ({ type }) => {
                   </div>
                 )}
                 <div className="headerSearchItem">
-                <button className="headerBtn" onClick={handleSearch}>Search</button>
+                  <button className="headerBtn" onClick={handleSearch}>Search</button>
                 </div>
               </div>
             </div>{" "}
