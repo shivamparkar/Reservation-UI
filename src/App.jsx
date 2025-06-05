@@ -11,7 +11,7 @@ function App() {
   const { user } = useContext(AuthContext);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Reservation-UI/">
       <Routes>
         {!user ? (
           <>

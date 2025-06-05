@@ -10,6 +10,12 @@
     flex-direction: column;
     gap: 10px;
   }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+  }
   
   .lInput{
     height: 30px;
@@ -25,8 +31,28 @@
     cursor: pointer;
     border-radius: 5px;
   }
+    .lButton:hover{
+      background-color: rgb(33, 133, 45);
+    }
+  
   
   .lButton:disabled{
     background-color: #0071c28c;
     cursor: not-allowed;
   }
+
+  .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

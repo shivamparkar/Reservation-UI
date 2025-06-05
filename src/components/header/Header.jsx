@@ -90,6 +90,7 @@ const Header = ({ type }) => {
             </p>
 
             {!user && <button className="headerBtn">Sign in / Register</button>}
+            
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
