@@ -11,7 +11,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const removeLogin = () => {
-    debugger;
     if (localStorage.getItem("user")) {
       localStorage.removeItem("user");
       navigate("./");
