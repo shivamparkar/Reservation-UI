@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContex";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
 
 
   const navigate = useNavigate();
