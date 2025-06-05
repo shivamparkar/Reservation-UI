@@ -14,7 +14,7 @@ const Navbar = () => {
     debugger;
     if (localStorage.getItem("user")) {
       localStorage.removeItem("user");
-      navigate("./Reservation-Ui/");
+      navigate("./");
     }
   };
 
