@@ -13,7 +13,8 @@ const Navbar = () => {
   const removeLogin = () => {
     if (localStorage.getItem("user")) {
       localStorage.removeItem("user");
-      navigate("/login");
+    dispatch({ type: "LOGOUT" });  
+    navigate("/login");
     }
   };
 
