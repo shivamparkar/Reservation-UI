@@ -7,11 +7,14 @@ import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error } = useFetch(`/api/hotels/room/${hotelId}`);
   const { date } = useContext(SearchContext);
+
+  const notify = () => toast("Registered");
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -61,9 +64,12 @@ const Reserve = ({ setOpen, hotelId }) => {
           return res.data;
         })
       );
+      notify();
       setOpen(false);
       navigate("/");
-    } catch (err) {}
+    } catch (err) {
+      
+    }
   };
   return (
     <div className="reserve">
