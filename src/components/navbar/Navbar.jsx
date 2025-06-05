@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
- 
+
 
   const navigate = useNavigate();
 
   const removeLogin = () => {
     if (localStorage.getItem("user")) {
       localStorage.removeItem("user");
-    dispatch({ type: "LOGOUT" });  
-    navigate("/login");
+      dispatch({ type: "LOGOUT" });
+      navigate("/login");
     }
   };
 
@@ -29,7 +29,7 @@ const Navbar = () => {
           <span>
             {user.username}
           </span>
-          
+
         ) : (
           <div className="navItem">
             <button className="navButton">Register</button>
